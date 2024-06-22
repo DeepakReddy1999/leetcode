@@ -3,7 +3,7 @@ class Solution {
 public:
     int maxSubArrayLen(vector<int>& nums, int k) {
         int n = nums.size();
-        unordered_map<long long, int> mp; // Use long long for the key type
+        unordered_map<long long, int> mp; 
         int max_len = 0;
         long long sum = 0;
 
