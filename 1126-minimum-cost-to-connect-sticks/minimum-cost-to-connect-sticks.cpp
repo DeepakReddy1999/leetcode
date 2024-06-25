@@ -3,11 +3,8 @@ public:
     int connectSticks(vector<int>& sticks) {
         int n=sticks.size();
         int ans=0;
-        priority_queue<int,vector<int>,greater<int>>pq;
-
-        for(int i:sticks){
-            pq.push(i);
-        }
+        priority_queue<int,vector<int>,greater<int>>pq(sticks.begin(),sticks.end());
+        
         int top1=0,top2=0;
         int temp=0;
         while(pq.size()>1){
