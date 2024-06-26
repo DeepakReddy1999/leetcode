@@ -2,13 +2,20 @@ class Solution {
 public:
     vector<vector<int>> minimumAbsDifference(vector<int>& arr) {
         int n=arr.size();
-        map<int,vector<vector<int>>>mp;
+        if(n<2) return {};
         sort(arr.begin(),arr.end());
+        int min_dif=INT_MAX;
+         vector<vector<int>> ans;
         for(int i=0;i<n-1;i++){
-            mp[(arr[i+1]-arr[i])].push_back({arr[i],arr[i+1]});
+          int diff=arr[i+1]-arr[i];
+          if(diff<min_dif){
+            min_dif =diff;
+            ans.clear();          
+          }
+          if(diff==min_dif){
+             ans.push_back({arr[i],arr[i+1]});
+          }
         }
-        vector<vector<int>> ans=mp.begin()->second;
-    
         return ans;
     }
 };
