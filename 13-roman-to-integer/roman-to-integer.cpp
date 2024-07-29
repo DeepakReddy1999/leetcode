@@ -12,7 +12,7 @@ public:
         mp['D']=500;
         mp['M']=1000;
         for(int i=0;i<n;i++){
-            if(mp[s[i]] < mp[s[i+1]]){
+            if(i < n - 1 && mp[s[i]] < mp[s[i+1]]){
                 ans-=mp[s[i]];
             }else{
                 ans+=mp[s[i]];
