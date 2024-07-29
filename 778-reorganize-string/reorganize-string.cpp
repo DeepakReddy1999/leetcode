@@ -1,34 +1,35 @@
 class Solution {
 public:
+    typedef pair<int, char> piv;
+    
     string reorganizeString(string s) {
-        priority_queue<pair<int, char>> pq;
         unordered_map<char, int> mp;
+        for (char ele : s) {
+            mp[ele]++;
+        }
 
-        for (char c : s) mp[c]++;
+        priority_queue<piv> pq;
+        for (auto ele : mp) {
+            pq.push({ele.second, ele.first});
+        }
+
+        string result = "";
+        while (pq.size() > 1) {
+            auto top1 = pq.top(); pq.pop();
+            auto top2 = pq.top(); pq.pop();
+            
+            result += top1.second;
+            result += top2.second;
+            
+            if (--top1.first > 0) pq.push(top1);
+            if (--top2.first > 0) pq.push(top2);
+        }
         
-        for (auto it : mp) {
-            pq.push({it.second, it.first});
+        if (!pq.empty()) {
+            if (pq.top().first > 1) return "";
+            result += pq.top().second;
         }
-
-        string ans = "";
-        pair<int, char> prev = {-1, '#'};
-
-        while (!pq.empty()) {
-            auto curr = pq.top();
-            pq.pop();
-            ans += curr.second;
-
-            curr.first--;
-            if (prev.first > 0) {
-                pq.push(prev);
-            }
-            prev = curr;
-        }
-
-        if (ans.length() != s.length()) {
-            return "";
-        }
-
-        return ans;
+        
+        return result;
     }
 };
