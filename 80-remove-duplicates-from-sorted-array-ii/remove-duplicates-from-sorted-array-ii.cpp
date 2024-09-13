@@ -8,7 +8,6 @@ public:
             mp[nums[i]]++;
            
             if(mp[nums[i]]<=2){
-                cout<<nums[i]<<" :"<<mp[nums[i]]<<endl;
                 nums[count]=nums[i];
                 count++;
             }
