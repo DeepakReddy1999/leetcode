@@ -3,22 +3,19 @@ public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         vector<vector<string>> ans;
         int n=strs.size();
-        unordered_map<string,vector<string>> mp;
-        for(const string& str:strs){
-            array<int,26> count={0};
-            for(char c:str){
-              count[c-'a']++;
+        unordered_map<string,vector<string>> ansmap;
+        for(string str:strs){
+                 vector<int> store(26,0);
+                 string res="";
+            for(char c: str){
+              store[c-'a']++;
             }
-            string key;
-
             for(int i=0;i<26;i++){
-                key+=string(count[i],i+'a');
+                res.append(store[i],'a'+i);
             }
-
-            mp[key].push_back(str);
-
+            ansmap[res].push_back(str);
         }
-        for(auto& it: mp){
+        for(auto it:ansmap){
             ans.push_back(it.second);
         }
         return ans;
