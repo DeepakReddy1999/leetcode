@@ -3,9 +3,9 @@ class Solution {
         Map<String,List<String>> map=new HashMap<>();
 
         for(String str:strs){
-            char[] chars=str.toCharArray();
-            Arrays.sort(chars);
-            String sortedWord=new String(chars);
+            
+            String sortedWord=str.chars().sorted().mapToObj(c->String.valueOf((char)c)).collect(Collectors.joining());
+
 
             if(!map.containsKey(sortedWord)){
                 map.put(sortedWord,new ArrayList<>());
